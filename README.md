@@ -83,7 +83,7 @@ The result is stored in the left register (if applicable).
 | CMP  |  R/N |  R/N  | Compares a register/number value with another register/number value, and stores the result in the CMP register                       |
 | DIV  |   R  |  R/N  | Divides the left register value by the right number/register value                                                                   |
 | IN   |   R  |   -   | Reads an 8-bit number from STDIN (or IO interface), and stores it in the left register (if there is no more input, the VM is halted) |
-| JA   |   L  |   -   | Checks the CMP register, and jumps to the specified label if the first operand is above the first                                    |
+| JA   |   L  |   -   | Checks the CMP register, and jumps to the specified label if the left operand is above the right                                     |
 | JAE  |   L  |   -   | Similar to JA, but also jumps if the two operands are equal                                                                          |
 | JB   |   L  |   -   | Similar to JA, but jumps only if the first operand is below the first                                                                |
 | JBE  |   L  |   -   | Similar to JA, but also jumps if the two operands are equal                                                                          |
@@ -96,9 +96,9 @@ The result is stored in the left register (if applicable).
 | OR   |   R  |  R/N  | Applies the bitwise OR operator on the left register value and right number/register value                                           |
 | OUT  |  R/N |   -   | Writes the left register/number value to STDOUT (or IO interface)                                                                    |
 | SHL  |   R  |  R/N  | Applies the left shift operator on the left register value, with the right register/number value as the shift count                  |
+| SHR  |   R  |  R/N  | Similar to SHL, but shifts to the right                                                                                              |
 | POP  |   R  |   -   | Pops the stack and stores the popped element in the left register                                                                    |
 | PUSH |  R/N |   -   | Pushes the left register/number value onto the stack                                                                                 |
-| SHR  |   R  |  R/N  | Similar to SHL, but shifts to the right                                                                                              |
 | SUB  |   R  |  R/N  | Subtracts the right register/number value from the left register                                                                     |
 | XOR  |   R  |  R/N  | Applies the bitwise XOR operator on the left register value and the right register/number value                                      |
 
