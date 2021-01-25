@@ -15,9 +15,13 @@ All of the instructions are executed by a virtual machine. Each virtual machine 
 
 The registers can be directly referenced, while the stack can be manipulated via the `PUSH` and `POP` operations.
 
-The number of registers and the stack size can be specified when creating a virtual machine. However, the usual values are **4 registers** and a **stack size** of **8**.
+The number of registers and the stack size can be specified when creating a virtual machine. However, the usual values are **4 registers** and a **stack size** of **8**. These usual values are also used by the provided `main.c` file.
 
-These values are also used by the provided `main.c` file.
+There is also a special register called `CMP`, which stores the result of the last `CMP` operation:
+
+- **0**, if the operands are equal
+- **1**, if the left operand is below the right one
+- **2**, if the left operand is above the right one
 
 ## Running the executable
 
