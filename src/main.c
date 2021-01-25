@@ -16,7 +16,7 @@ void run_file(const char* path);
 
 int main(int argc, char** argv) {
     if(argc != 2)
-        TERMINATE(1, "Invalid arguments");
+        TERMINATE(1, "Usage: %s <FILE>", argv[0]);
 
     run_file(argv[1]);
 }
