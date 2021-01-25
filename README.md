@@ -73,7 +73,7 @@ To refer to a register, use the `Rn` syntax, where `n` is the register number (*
 The result is stored in the left register (if applicable).
 
 |  OP  | Left | Right |                                                              Description                                                             |
-|:----:|:----:|:-----:|:------------------------------------------------------------------------------------------------------------------------------------:|
+|:----:|:----:|:-----:|--------------------------------------------------------------------------------------------------------------------------------------|
 | ADD  |   R  |  R/N  | Adds the right number/register to the left register                                                                                  |
 | AND  |   R  |  R/N  | Applies the bitwise AND operator on the left register and the right number/register                                                  |
 | CMP  |  R/N |  R/N  | Compares a register/number value with another register/number value, and stores the result in the CMP register                       |
