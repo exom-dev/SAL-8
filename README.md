@@ -86,7 +86,7 @@ The result is stored in the left register (if applicable).
 | JA   |   L  |   -   | Checks the CMP register, and jumps to the specified label if the left operand is above the right                                     |
 | JAE  |   L  |   -   | Similar to JA, but also jumps if the two operands are equal                                                                          |
 | JB   |   L  |   -   | Similar to JA, but jumps only if the first operand is below the first                                                                |
-| JBE  |   L  |   -   | Similar to JA, but also jumps if the two operands are equal                                                                          |
+| JBE  |   L  |   -   | Similar to JB, but also jumps if the two operands are equal                                                                          |
 | JE   |   L  |   -   | Similar to JA, but jumps only if the operands are equal                                                                              |
 | JMP  |   L  |   -   | Jumps to the specified label                                                                                                         |
 | MOD  |   R  |  R/N  | Applies the mod operator between the left register and right number/register                                                         |
