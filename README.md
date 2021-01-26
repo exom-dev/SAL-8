@@ -28,7 +28,7 @@ There is also a special register called `CMP`, which stores the result of the la
 To run a SAL-8 file with the executable, simply pass the path to the file as the first argument.
 
 ```shell
-sal8 <path/to/file.sal8>
+sal8 <FILE>
 ```
 
 # Syntax
