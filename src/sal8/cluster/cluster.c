@@ -1,4 +1,5 @@
 #include "cluster.h"
+#include "bytecode.h"
 #include "../mem/mem.h"
 
 #include "string.h"
@@ -20,4 +21,8 @@ void sal8_cluster_write(SAL8Cluster* cl, uint8_t* src, uint32_t count) {
 void sal8_cluster_delete(SAL8Cluster* cl) {
     SAL8_FREE(cl->data);
     sal8_cluster_init(cl);
+}
+
+uint32_t sal8_cluster_instruction_count(SAL8Cluster* cl) {
+    return cl->size / SAL8_BYTECODE_FORMAT;
 }

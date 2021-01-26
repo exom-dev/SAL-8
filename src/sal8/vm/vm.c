@@ -266,3 +266,7 @@ SAL8VMStatus sal8_vm_run(SAL8VM* vm, uint32_t count) {
     #undef RIGHT
     #undef LEFT
 }
+
+bool sal8_vm_finished(SAL8VM* vm) {
+    return vm->ip == (vm->cl.data + vm->cl.size);
+}
