@@ -31,8 +31,10 @@ void sal8_vm_load(SAL8VM* vm, SAL8Cluster cl) {
 
     sal8_stack_reset(&vm->stk);
 
-    for(size_t i = 0; i < vm->regc; ++i)
+    for(uint8_t i = 0; i < vm->regc; ++i)
         vm->regs[i] = 0;
+    for(uint8_t i = 0; i < sal8_stack_capacity(&vm->stk); ++i)
+        vm->stk.base[i] = 0;
 
     vm->cmp = 0;
 }
