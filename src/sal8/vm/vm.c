@@ -7,18 +7,22 @@
 #include <stdarg.h>
 #include <stdbool.h>
 
-void sal8_vm_init(SAL8VM* vm, uint8_t regCount, uint8_t stkSize) {
+void sal8_vm_init(SAL8VM* vm, uint8_t regCount, uint8_t stkCap) {
     sal8_io_init(&vm->io);
 
     vm->regc = regCount;
     vm->regs = SAL8_MEM_ALLOC(sizeof(SAL8Slot) * regCount);
 
-    sal8_stack_init(&vm->stk, stkSize);
+    sal8_stack_init(&vm->stk, stkCap);
 }
 
 void sal8_vm_delete(SAL8VM* vm) {
     SAL8_FREE(vm->regs);
     sal8_stack_delete(&vm->stk);
+}
+
+SAL8Slot sal8_vm_access_register(SAL8VM* vm, uint8_t index) {
+    return vm->regs[index];
 }
 
 void sal8_vm_load(SAL8VM* vm, SAL8Cluster cl) {

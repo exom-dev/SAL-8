@@ -17,6 +17,9 @@ typedef struct {
 SAL8_API void     sal8_stack_init(SAL8Stack* stk, uint8_t size);
 SAL8_API void     sal8_stack_push(SAL8Stack* stk, SAL8Slot sl);
 SAL8_API SAL8Slot sal8_stack_pop(SAL8Stack* stk);
+SAL8_API uint8_t  sal8_stack_size(SAL8Stack* stk);
+SAL8_API uint8_t  sal8_stack_capacity(SAL8Stack* stk);
+SAL8_API SAL8Slot sal8_stack_get(SAL8Stack* stk, uint8_t index);
 SAL8_API void     sal8_stack_reset(SAL8Stack* stk);
 SAL8_API void     sal8_stack_delete(SAL8Stack* stk);
 
