@@ -1,6 +1,5 @@
 #include "compiler.h"
 #include "../mem/mem.h"
-#include "../io/log.h"
 
 #include <string.h>
 #include <stdlib.h>
