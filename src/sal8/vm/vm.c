@@ -110,8 +110,6 @@ SAL8VMStatus sal8_vm_run(SAL8VM* vm, uint32_t count) {
                 break;
             }
             case SAL8_OP_JE: {
-                IP_SKIP(SAL8_BYTECODE_FORMAT - 1);
-
                 if(vm->cmp == SAL8_VM_CMP_EQUAL)
                     IP_SET(LEFT * SAL8_BYTECODE_FORMAT);
                 else IP_SKIP(SAL8_BYTECODE_FORMAT - 1);

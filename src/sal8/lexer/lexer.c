@@ -174,6 +174,7 @@ SAL8Token sal8_lexer_next_identifier(SAL8Lexer* lexer) {
                                                                       ((lexer->current - lexer->start == 2) ? SAL8_TOKEN_JA : SAL8_TOKEN_IDENTIFIER));
                     case 'b': case 'B': return sal8_lexer_emit(lexer, IMATCH_INSTRUCTION(2, 1, "e") ? SAL8_TOKEN_JBE :
                                                                       ((lexer->current - lexer->start == 2) ? SAL8_TOKEN_JB : SAL8_TOKEN_IDENTIFIER));
+                    case 'e': case'E': return sal8_lexer_emit(lexer, (lexer->current - lexer->start == 2) ? SAL8_TOKEN_JE : SAL8_TOKEN_IDENTIFIER);
                     case 'm': case 'M': return sal8_lexer_emit(lexer, IMATCH_INSTRUCTION(2, 1, "p") ? SAL8_TOKEN_JMP : SAL8_TOKEN_IDENTIFIER);
                 }
             }
