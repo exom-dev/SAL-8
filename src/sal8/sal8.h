@@ -10,4 +10,7 @@
 #include "slot/slot.h"
 #include "vm/vm.h"
 
+#define SAL8_VERSION  "1.0.0"
+#define SAL8_CODENAME "INITUS"
+
 #endif
