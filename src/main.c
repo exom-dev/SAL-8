@@ -41,7 +41,7 @@ void run_file(const char* path) {
 
     if(fread(src, sizeof(char), size, file) < size) {
         fclose(file);
-        SAL8_FREE(src);
+        SAL8_MEM_FREE(src);
         TERMINATE(1, "Cannot read file '%s'\n", path);
     }
 
@@ -57,7 +57,7 @@ void run_file(const char* path) {
 
     sal8_compiler_delete(&compiler);
 
-    SAL8_FREE(src);
+    SAL8_MEM_FREE(src);
 
     if(status == SAL8_COMPILER_ERROR) {
         sal8_cluster_delete(&cl);

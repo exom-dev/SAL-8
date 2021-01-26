@@ -8,6 +8,12 @@
 #include "../cluster/cluster.h"
 #include "../data/label_map.h"
 
+typedef struct SAL8UnresolvedLabel {
+    struct SAL8UnresolvedLabel* link;
+    SAL8Token token;
+    uint8_t index;
+} SAL8UnresolvedLabel;
+
 typedef struct {
     SAL8IO io;
 
@@ -17,6 +23,7 @@ typedef struct {
 
     SAL8Parser* parser;
     SAL8LabelMap labels;
+    SAL8UnresolvedLabel* ulabels;
 } SAL8Compiler;
 
 typedef enum {

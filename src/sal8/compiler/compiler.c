@@ -1,5 +1,7 @@
 #include "compiler.h"
+#include "../mem/mem.h"
 
+#include <string.h>
 #include <stdlib.h>
 #include <errno.h>
 
@@ -24,6 +26,8 @@ void sal8_compiler_init(SAL8Compiler* compiler, uint8_t regCount) {
     sal8_io_init(&compiler->io);
     sal8_cluster_init(&compiler->cl);
     sal8_label_map_init(&compiler->labels);
+
+    compiler->ulabels = NULL;
 }
 
 void sal8_compiler_delete(SAL8Compiler* compiler) {
@@ -34,6 +38,8 @@ void sal8_compiler_clean(SAL8Compiler* compiler) {
     sal8_label_map_delete(&compiler->labels);
     sal8_label_map_init(&compiler->labels);
     sal8_cluster_init(&compiler->cl);
+
+    compiler->ulabels = NULL;
 }
 
 SAL8CompilerStatus sal8_compiler_compile(SAL8Compiler* compiler, const char* str) {
@@ -73,11 +79,19 @@ SAL8CompilerStatus sal8_compiler_compile(SAL8Compiler* compiler, const char* str
             firstInstruction = false;
     }
 
+    while(compiler->ulabels != NULL) {
+        SAL8UnresolvedLabel* ptr = compiler->ulabels;
+        sal8_parser_error_at(compiler->parser, ptr->token, "Undefined label");
+        compiler->ulabels = ptr->link;
+        SAL8_MEM_FREE(ptr);
+    }
+
     return compiler->parser->error ? SAL8_COMPILER_ERROR : SAL8_COMPILER_OK;
 }
 
 static void sal8_compiler_compile_label(SAL8Compiler* compiler) {
     uint8_t offset;
+    SAL8UnresolvedLabel* ulabel;
 
     if(sal8_label_map_nget(&compiler->labels, compiler->parser->current.start, compiler->parser->current.size - 1, &offset)) {
         sal8_parser_error_at_current(compiler->parser, "Label already defined");
@@ -94,6 +108,33 @@ static void sal8_compiler_compile_label(SAL8Compiler* compiler) {
         return;
     }
 
+    if((ulabel = compiler->ulabels) == NULL)
+        goto _unresolved_label_end;
+
+    // Check all nodes except the first.
+    while(ulabel->link != NULL) {
+        SAL8UnresolvedLabel* ptr = ulabel->link;
+
+        if(ptr->token.size == compiler->parser->current.size - 1 && strncmp(compiler->parser->current.start, ptr->token.start, ptr->token.size) == 0) {
+            compiler->cl.data[ptr->index + 1] = (uint8_t) (compiler->cl.size / 3);
+            ulabel->link = ptr->link;
+            SAL8_MEM_FREE(ptr);
+            continue;
+        }
+
+        ulabel = ulabel->link;
+    }
+
+    ulabel = compiler->ulabels;
+
+    // Check the first node.
+    if(ulabel->token.size == compiler->parser->current.size - 1 && strncmp(compiler->parser->current.start, ulabel->token.start, ulabel->token.size) == 0) {
+        compiler->cl.data[ulabel->index + 1] = (uint8_t) (compiler->cl.size / 3);
+        compiler->ulabels = ulabel->link;
+        SAL8_MEM_FREE(ulabel);
+    }
+
+_unresolved_label_end:
     sal8_parser_advance(compiler->parser);
 }
 
@@ -321,9 +362,16 @@ static uint8_t sal8_compiler_read_number(SAL8Compiler* compiler) {
 static uint8_t sal8_compiler_read_label(SAL8Compiler* compiler) {
     uint8_t offset;
 
+    // Undefined label.
     if(!sal8_label_map_nget(&compiler->labels, compiler->parser->current.start, compiler->parser->current.size, &offset)) {
-        sal8_parser_error_at_current(compiler->parser, "Undefined label");
-        return UINT8_MAX;
+        SAL8UnresolvedLabel* ulabel = SAL8_MEM_ALLOC(sizeof(SAL8UnresolvedLabel));
+        ulabel->token = compiler->parser->current;
+        ulabel->index = compiler->cl.size;
+
+        ulabel->link = compiler->ulabels;
+        compiler->ulabels = ulabel;
+
+        offset = 0;
     }
 
     return offset;

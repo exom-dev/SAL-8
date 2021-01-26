@@ -17,7 +17,7 @@ void sal8_vm_init(SAL8VM* vm, uint8_t regCount, uint8_t stkCap) {
 }
 
 void sal8_vm_delete(SAL8VM* vm) {
-    SAL8_FREE(vm->regs);
+    SAL8_MEM_FREE(vm->regs);
     sal8_stack_delete(&vm->stk);
 }
 

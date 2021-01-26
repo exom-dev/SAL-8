@@ -19,7 +19,7 @@ void sal8_cluster_write(SAL8Cluster* cl, uint8_t* src, uint32_t count) {
 }
 
 void sal8_cluster_delete(SAL8Cluster* cl) {
-    SAL8_FREE(cl->data);
+    SAL8_MEM_FREE(cl->data);
     sal8_cluster_init(cl);
 }
 

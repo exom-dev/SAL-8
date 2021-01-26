@@ -33,5 +33,5 @@ void sal8_stack_reset(SAL8Stack* stk) {
 }
 
 void sal8_stack_delete(SAL8Stack* stk) {
-    SAL8_FREE(stk->base);
+    SAL8_MEM_FREE(stk->base);
 }

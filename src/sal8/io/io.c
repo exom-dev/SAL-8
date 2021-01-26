@@ -38,7 +38,7 @@ void sal8_io_out(SAL8IO* io, const char* fmt, ...) {
     va_end(args);
 
     io->out(data);
-    SAL8_FREE(data);
+    SAL8_MEM_FREE(data);
 }
 
 void sal8_io_err(SAL8IO* io, const char* fmt, ...) {
@@ -50,7 +50,7 @@ void sal8_io_err(SAL8IO* io, const char* fmt, ...) {
     va_end(args);
 
     io->err(data);
-    SAL8_FREE(data);
+    SAL8_MEM_FREE(data);
 }
 
 void sal8_io_redirect_in(SAL8IO* io, SAL8InHandler handler) {

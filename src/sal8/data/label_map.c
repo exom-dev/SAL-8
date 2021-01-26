@@ -55,7 +55,7 @@ static void sal8_label_map_adjust_capacity(SAL8LabelMap* map) {
             ++map->count;
         }
 
-        SAL8_FREE(map->entries);
+        SAL8_MEM_FREE(map->entries);
         map->entries = entries;
         map->capacity = capacity;
     }
@@ -72,10 +72,10 @@ void sal8_label_map_delete(SAL8LabelMap* map) {
         if(map->entries[i].key == NULL)
             continue;
 
-        SAL8_FREE(map->entries[i].key);
+        SAL8_MEM_FREE(map->entries[i].key);
     }
 
-    SAL8_FREE(map->entries);
+    SAL8_MEM_FREE(map->entries);
     sal8_label_map_init(map);
 }
 
