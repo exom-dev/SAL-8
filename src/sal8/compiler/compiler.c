@@ -30,6 +30,12 @@ void sal8_compiler_delete(SAL8Compiler* compiler) {
     sal8_label_map_delete(&compiler->labels);
 }
 
+void sal8_compiler_clean(SAL8Compiler* compiler) {
+    sal8_label_map_delete(&compiler->labels);
+    sal8_label_map_init(&compiler->labels);
+    sal8_cluster_init(&compiler->cl);
+}
+
 SAL8CompilerStatus sal8_compiler_compile(SAL8Compiler* compiler, const char* str) {
     SAL8Parser parser;
     bool firstInstruction = true;

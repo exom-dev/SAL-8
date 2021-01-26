@@ -1,6 +1,7 @@
 #ifndef SAL8_VM_H_GUARD
 #define SAL8_VM_H_GUARD
 
+#include "../api.h"
 #include "../io/io.h"
 #include "../slot/slot.h"
 #include "../cluster/cluster.h"
@@ -31,9 +32,9 @@ typedef enum {
     SAL8_VM_ERROR
 } SAL8VMStatus;
 
-void         sal8_vm_init(SAL8VM* vm, uint8_t regCount, uint8_t stkSize);
-void         sal8_vm_delete(SAL8VM* vm);
-void         sal8_vm_load(SAL8VM* vm, SAL8Cluster cl);
-SAL8VMStatus sal8_vm_run(SAL8VM* vm, uint32_t count);
+SAL8_API void         sal8_vm_init(SAL8VM* vm, uint8_t regCount, uint8_t stkSize);
+SAL8_API void         sal8_vm_delete(SAL8VM* vm);
+SAL8_API void         sal8_vm_load(SAL8VM* vm, SAL8Cluster cl);
+SAL8_API SAL8VMStatus sal8_vm_run(SAL8VM* vm, uint32_t count);
 
 #endif

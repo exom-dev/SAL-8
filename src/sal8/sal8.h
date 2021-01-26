@@ -1,6 +1,7 @@
 #ifndef SAL8_SAL8_H_GUARD
 #define SAL8_SAL8_H_GUARD
 
+#include "api.h"
 #include "cluster/bytecode.h"
 #include "cluster/cluster.h"
 #include "compiler/compiler.h"

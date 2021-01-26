@@ -1,6 +1,7 @@
 #ifndef SAL8_COMPILER_H_GUARD
 #define SAL8_COMPILER_H_GUARD
 
+#include "../api.h"
 #include "parser.h"
 #include "../io/io.h"
 #include "../lexer/lexer.h"
@@ -23,9 +24,10 @@ typedef enum {
     SAL8_COMPILER_ERROR
 } SAL8CompilerStatus;
 
-void sal8_compiler_init(SAL8Compiler* compiler, uint8_t regCount);
-void sal8_compiler_delete(SAL8Compiler* compiler);
+SAL8_API void sal8_compiler_init(SAL8Compiler* compiler, uint8_t regCount);
+SAL8_API void sal8_compiler_delete(SAL8Compiler* compiler);
+SAL8_API void sal8_compiler_clean(SAL8Compiler* compiler);
 
-SAL8CompilerStatus sal8_compiler_compile(SAL8Compiler* compiler, const char* str);
+SAL8_API SAL8CompilerStatus sal8_compiler_compile(SAL8Compiler* compiler, const char* str);
 
 #endif

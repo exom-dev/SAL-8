@@ -3,6 +3,8 @@
 
 #include "../cluster/bytecode.h"
 
+#include "../api.h"
+
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -39,13 +41,13 @@ typedef struct {
     uint32_t index;
 } SAL8Lexer;
 
-SAL8OpCode sal8_token_to_opcode(SAL8TokenType token);
+SAL8_API SAL8OpCode sal8_token_to_opcode(SAL8TokenType token);
 
-void sal8_lexer_init(SAL8Lexer* lexer);
-void sal8_lexer_source(SAL8Lexer* lexer, const char* src);
+SAL8_API void sal8_lexer_init(SAL8Lexer* lexer);
+SAL8_API void sal8_lexer_source(SAL8Lexer* lexer, const char* src);
 
-SAL8Token sal8_lexer_next(SAL8Lexer* lexer);
-SAL8Token sal8_lexer_emit(SAL8Lexer* lexer, SAL8TokenType type);
-SAL8Token sal8_lexer_error(SAL8Lexer* lexer, const char* msg);
+SAL8_API SAL8Token sal8_lexer_next(SAL8Lexer* lexer);
+SAL8_API SAL8Token sal8_lexer_emit(SAL8Lexer* lexer, SAL8TokenType type);
+SAL8_API SAL8Token sal8_lexer_error(SAL8Lexer* lexer, const char* msg);
 
 #endif
