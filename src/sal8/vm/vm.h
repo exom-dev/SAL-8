@@ -36,6 +36,7 @@ typedef enum {
 SAL8_API void         sal8_vm_init(SAL8VM* vm, uint8_t regCount, uint8_t stkCap);
 SAL8_API void         sal8_vm_delete(SAL8VM* vm);
 SAL8_API SAL8Slot     sal8_vm_access_register(SAL8VM* vm, uint8_t index);
+SAL8_API uint32_t     sal8_vm_current_instruction_index(SAL8VM* vm);
 SAL8_API void         sal8_vm_load(SAL8VM* vm, SAL8Cluster cl);
 SAL8_API SAL8VMStatus sal8_vm_run(SAL8VM* vm, uint32_t count);
 SAL8_API bool         sal8_vm_finished(SAL8VM* vm);

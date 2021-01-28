@@ -25,6 +25,10 @@ SAL8Slot sal8_vm_access_register(SAL8VM* vm, uint8_t index) {
     return vm->regs[index];
 }
 
+uint32_t sal8_vm_current_instruction_index(SAL8VM* vm) {
+    return (vm->ip - vm->cl.data) / SAL8_BYTECODE_FORMAT;
+}
+
 void sal8_vm_load(SAL8VM* vm, SAL8Cluster cl) {
     vm->cl = cl;
     vm->ip = cl.data;
