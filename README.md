@@ -45,13 +45,10 @@ The list of all operations is listed in a table below.
 
 #### Comments
 
-The comment syntax is similar to C.
+Comments are preceded by the `#` character.
 
-```c
-// Single-line comment.
-
-/* Multi-line
-comment */
+```shell
+# Single-line comment.
 ```
 
 #### Labels 
@@ -110,9 +107,9 @@ Reads numbers and outputs them.
 
 ```asm
 _loop:
-IN   R0        // Read a number and store it in the first register. If there is no more input, or the input is invalid, the VM will be halted.
-OUT  R0        // Output the number stored in the first register.
-JMP  _loop     // Jump back.
+IN   R0        # Read a number and store it in the first register. If there is no more input, or the input is invalid, the VM will be halted.
+OUT  R0        # Output the number stored in the first register.
+JMP  _loop     # Jump back.
 ```
 
 #### Count
@@ -121,10 +118,10 @@ Reads a number `n` and prints all numbers from `n` to 0 (inclusive).
 
 ```asm
 IN  R0
-ADD R0, 1     // The number is first subtracted, so add 1 to the initial number.
+ADD R0, 1     # The number is first subtracted, so add 1 to the initial number.
 
 loop:
-SUB R0, 1     // 0 needs to be included. Subtracting 1 from 0 gives 255. So, first subtract, print, and then check.
+SUB R0, 1     # 0 needs to be included. Subtracting 1 from 0 gives 255. So, first subtract, print, and then check.
 OUT R0
 CMP R0, 0
 JA  loop
@@ -139,7 +136,7 @@ MOV R0, 0
 
 _input_loop:
 IN   R1
-PUSH R1         // Read each number and push it onto the stack.
+PUSH R1         # Read each number and push it onto the stack.
 ADD  R0, 1
 CMP  R0, 8
 JB   _input_loop
@@ -147,7 +144,7 @@ JB   _input_loop
 MOV R0, 8
 
 _output_loop:
-POP R1          // Pop each number from the stack and output it.
+POP R1          # Pop each number from the stack and output it.
 OUT R1
 SUB R0, 1
 CMP R0, 0

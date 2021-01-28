@@ -67,26 +67,11 @@ SAL8Token sal8_lexer_next(SAL8Lexer* lexer) {
             case '\r':
                 ADVANCE(1);
                 break;
-            case '/':
-                if(PEEK(1) == '/') {
-                    ADVANCE(2);
+            case '#':
+                ADVANCE(1);
 
-                    while(!AT_END(0) && PEEK(0) != '\n')
-                        ADVANCE(1);
-                } else if(PEEK(1) == '*') {
-                    ADVANCE(2);
-
-                    while(!AT_END(0)) {
-                        if(PEEK(0) == '*' && !AT_END(1) && PEEK(1) == '/')
-                            break;
-                        ADVANCE(1);
-                    }
-
-                    if(AT_END(0))
-                        return sal8_lexer_error(lexer, "Expected end of comment block");
-
-                    ADVANCE(2);
-                } else whitespace = false;
+                while(!AT_END(0) && PEEK(0) != '\n')
+                    ADVANCE(1);
 
                 break;
             default:
