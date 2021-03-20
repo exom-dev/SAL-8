@@ -24,7 +24,7 @@ typedef struct {
 
     SAL8Slot cmp;
 
-    SAL8Cluster  cl;
+    SAL8Cluster cl;
     uint8_t* ip;
 } SAL8VM;
 

@@ -49,3 +49,5 @@ void sal8_mem_free(void* ptr, const char* file, uint32_t line) {
 void sal8_mem_panic() {
     exit(SAL8_EXIT_OOM);
 }
+
+#undef MEM_BLOCK_START_SIZE
