@@ -98,7 +98,7 @@ SAL8Token sal8_lexer_next(SAL8Lexer* lexer) {
             break;
     }
 
-    if(sal8_lib_charlib_is_alpha(c))
+    if(sal8_lib_charlib_is_alphascore(c))
         return sal8_lexer_next_identifier(lexer);
     if(sal8_lib_charlib_is_digit(c))
         return sal8_lexer_next_number(lexer);
@@ -131,7 +131,7 @@ SAL8Token sal8_lexer_next_identifier(SAL8Lexer* lexer) {
             ((lexer->current - lexer->start == index + length) && \
             (sal8_lib_charlib_strnicmp(lexer->start + index, str, length)))
 
-    while(!AT_END(0) && (sal8_lib_charlib_is_alpha(PEEK(0)) || sal8_lib_charlib_is_digit(PEEK(0))))
+    while(!AT_END(0) && (sal8_lib_charlib_is_alphascore(PEEK(0)) || sal8_lib_charlib_is_digit(PEEK(0))))
         ADVANCE(1);
 
     if(MATCH(':'))

@@ -7,7 +7,7 @@ bool sal8_lib_charlib_is_digit(char c) {
     return c >= '0' && c <= '9';
 }
 
-bool sal8_lib_charlib_is_alpha(char c) {
+bool sal8_lib_charlib_is_alphascore(char c) {
     return (c >= 'a' && c <= 'z')
            || (c >= 'A' && c <= 'Z')
            || (c == '_');

@@ -7,7 +7,7 @@
 #include <stdbool.h>
 
 SAL8_API_HIDDEN bool sal8_lib_charlib_is_digit(char c);
-SAL8_API_HIDDEN bool sal8_lib_charlib_is_alpha(char c);
+SAL8_API_HIDDEN bool sal8_lib_charlib_is_alphascore(char c);
 SAL8_API_HIDDEN bool sal8_lib_charlib_strnicmp(const char* left, const char* right, size_t size);
 SAL8_API_HIDDEN bool sal8_lib_charlib_strmcmp(const char* left, const char* right, size_t size); // Like strcmp, but right is not null-terminated, while left is. Size = right size.
 
