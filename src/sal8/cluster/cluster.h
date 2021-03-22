@@ -3,11 +3,12 @@
 
 #include "../api.h"
 #include <stdint.h>
+#include <stdlib.h>
 
 typedef struct {
     uint8_t* data;
-    uint32_t size;
-    uint32_t cap;
+    size_t size;
+    size_t cap;
 } SAL8Cluster;
 
 SAL8_API void     sal8_cluster_init(SAL8Cluster* cl);
